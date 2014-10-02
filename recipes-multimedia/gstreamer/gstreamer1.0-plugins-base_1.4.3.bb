@@ -9,6 +9,6 @@ SRC_URI += "file://do-not-change-eos-event-to-gap-event-if.patch \
             file://get-caps-from-src-pad-when-query-caps.patch \
 "
 
-SRC_URI[md5sum] = "1ff06280b03b9098a706d1290d8bb3bd"
-SRC_URI[sha256sum] = "5daed4b983b64e4e3fbe9cd29063e4302812cd03ba685a15b06a790911d04c1e"
+SRC_URI[md5sum] = "d8facf3be279585f3ad2e764540376f7"
+SRC_URI[sha256sum] = "f7b4d2b3ba2bcac485896e2c1c36459cb091ebe8b49e91635c27d40f66792d9d"
 S = "${WORKDIR}/gst-plugins-base-${PV}"

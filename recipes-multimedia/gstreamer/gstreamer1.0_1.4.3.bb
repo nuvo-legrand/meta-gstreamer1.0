@@ -8,7 +8,8 @@ SRC_URI = " \
     file://0001-Fix-crash-with-gst-inspect.patch \
 "
 
-SRC_URI[md5sum] = "594c0c06eaace9b9d3bad010de1bdfae"
-SRC_URI[sha256sum] = "23c39fdc2b24f889b07cab0449825384fef7592a121e180729fd9025ec45c695"
+SRC_URI[md5sum] = "7934fd965bbe1398f0ff1edeb7f1fd89"
+SRC_URI[sha256sum] = "11f155784d28b85a12b50d2fc8f91c6b75d9ca325cc76aaffba1a58d4c9549c9"
+
 S = "${WORKDIR}/gstreamer-${PV}"
 
