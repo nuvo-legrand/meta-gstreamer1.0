@@ -1,0 +1,72 @@
+From 18a5f7ba9837a9aa189baaf578f142054b3268a7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sebastian=20Dr=C3=B6ge?= <sebastian@centricular.com>
+Date: Thu, 2 Oct 2014 10:57:43 +0300
+Subject: [PATCH 3/7] queue2: update segment position on GAP events to
+ calculate levels properly
+
+https://bugzilla.gnome.org/show_bug.cgi?id=737498
+---
+ plugins/elements/gstqueue2.c | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/plugins/elements/gstqueue2.c b/plugins/elements/gstqueue2.c
+index fcaf7be..87f9a5f 100644
+--- a/plugins/elements/gstqueue2.c
++++ b/plugins/elements/gstqueue2.c
+@@ -712,6 +712,33 @@ apply_segment (GstQueue2 * queue, GstEvent * event, GstSegment * segment,
+   update_time_level (queue);
+ }
+ 
++static void
++apply_gap (GstQueue2 * queue, GstEvent * event,
++    GstSegment * segment, gboolean is_sink)
++{
++  GstClockTime timestamp;
++  GstClockTime duration;
++
++  gst_event_parse_gap (event, &timestamp, &duration);
++
++  if (GST_CLOCK_TIME_IS_VALID (timestamp)) {
++
++    if (GST_CLOCK_TIME_IS_VALID (duration)) {
++      timestamp += duration;
++    }
++
++    segment->position = timestamp;
++
++    if (is_sink)
++      queue->sink_tainted = TRUE;
++    else
++      queue->src_tainted = TRUE;
++
++    /* calc diff with other end */
++    update_time_level (queue);
++  }
++}
++
+ /* take a buffer and update segment, updating the time level of the queue. */
+ static void
+ apply_buffer (GstQueue2 * queue, GstBuffer * buffer, GstSegment * segment,
+@@ -2042,6 +2069,9 @@ gst_queue2_locked_enqueue (GstQueue2 * queue, gpointer item,
+          * from downstream */
+         queue->unexpected = FALSE;
+         break;
++      case GST_EVENT_GAP:
++        apply_gap (queue, event, &queue->sink_segment, TRUE);
++        break;
+       case GST_EVENT_STREAM_START:
+         if (!QUEUE_IS_USING_QUEUE (queue)) {
+           gst_event_replace (&queue->stream_start_event, event);
+@@ -2170,6 +2200,9 @@ gst_queue2_locked_dequeue (GstQueue2 * queue, GstQueue2ItemType * item_type)
+       case GST_EVENT_SEGMENT:
+         apply_segment (queue, event, &queue->src_segment, FALSE);
+         break;
++      case GST_EVENT_GAP:
++        apply_gap (queue, event, &queue->src_segment, FALSE);
++        break;
+       default:
+         break;
+     }
+-- 
+1.8.1.2
+
