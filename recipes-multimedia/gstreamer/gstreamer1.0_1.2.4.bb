@@ -7,7 +7,8 @@ SRC_URI = " \
     http://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${PV}.tar.xz \
     file://0001-Fix-crash-with-gst-inspect.patch \
     "
-SRC_URI[md5sum] = "4293ca4d8333690d5acdffe3ad354924"
-SRC_URI[sha256sum] = "b9f12137ab663edc6c37429b38ca7911074b9c2a829267fe855d4e57d916a0b6"
+SRC_URI[md5sum] = "74d8f674187a5f0ddf38da594c3998c3"
+SRC_URI[sha256sum] = "1e7ca67a7870a82c9ed51d51d0008cdbc550c41d64cc3ff3f9a1c2fc311b4929"
+
 S = "${WORKDIR}/gstreamer-${PV}"
 
