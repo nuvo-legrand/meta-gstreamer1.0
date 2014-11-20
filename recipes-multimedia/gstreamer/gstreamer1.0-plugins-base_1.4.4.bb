@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=c54ce9345727175ff66d17b67ff51f58 \
 SRC_URI += "file://do-not-change-eos-event-to-gap-event-if.patch \
             file://get-caps-from-src-pad-when-query-caps.patch \
 "
+SRC_URI[md5sum] = "0c42eca8f9e4efd56d2ce8e9249ce4a1"
+SRC_URI[sha256sum] = "49cd9e8f23c416b1607b43837a09833fa03e0106929d81ead2ddfde6c0ade44b"
 
-SRC_URI[md5sum] = "d8facf3be279585f3ad2e764540376f7"
-SRC_URI[sha256sum] = "f7b4d2b3ba2bcac485896e2c1c36459cb091ebe8b49e91635c27d40f66792d9d"
 S = "${WORKDIR}/gst-plugins-base-${PV}"

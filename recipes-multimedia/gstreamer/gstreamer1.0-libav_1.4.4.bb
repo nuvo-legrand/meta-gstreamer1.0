@@ -13,8 +13,8 @@ SRC_URI = " \
     http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-${PV}.tar.xz \
     file://0001-Disable-yasm-for-libav-when-disable-yasm.patch \
 "
-SRC_URI[md5sum] = "248b6aae752710bbae77af01f74a082d"
-SRC_URI[sha256sum] = "833229d2b1aad6549ad0297435516508cc3ac47b166d6393ecdffc34c31a01d3"
+SRC_URI[md5sum] = "64a3e2cda2687132cadca4efdc63f3b4"
+SRC_URI[sha256sum] = "2ec7285e5ec6731963b0955487cceb9eb04e285ca682f3ef575996c068cde8aa"
 LIBAV_EXTRA_CONFIGURE_COMMON_ARG = "--target-os=linux \
   --cc='${CC}' --as='${CC}' --ld='${CC}' --nm='${NM}' --ar='${AR}' \
   --ranlib='${RANLIB}' \
