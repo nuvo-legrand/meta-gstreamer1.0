@@ -13,6 +13,7 @@ DEPENDS = "glib-2.0 gnutls libxml2 libproxy sqlite3 libgnome-keyring"
 
 SHRT_VER = "${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"
 SRC_URI = "${GNOME_MIRROR}/libsoup/${SHRT_VER}/libsoup-${PV}.tar.xz"
+SRC_URI += "file://fix-identity-transfer-encoding-header.patch"
 
 SRC_URI[md5sum] = "211ec6b733d4de33056b56838c88436e"
 SRC_URI[sha256sum] = "32e81220f53abb1f5bbe7d8b0717119df70667fc48e2342d82209ed1593e71dc"
